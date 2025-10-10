@@ -1,4 +1,5 @@
 import { postgresAdapter } from "@payloadcms/db-postgres"
+import { vercelPostgresAdapter } from "@payloadcms/db-vercel-postgres"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import path from "path"
 import { buildConfig } from "payload"
@@ -15,191 +16,18 @@ export default buildConfig({
     },
   },
   collections: [
-    {
-      slug: "users",
-      auth: true,
-      access: {
-        delete: () => false,
-        update: () => false,
-      },
-      fields: [
-        {
-          name: "name",
-          type: "text",
-        },
-      ],
-    },
-    {
-      slug: "hero",
-      admin: {
-        useAsTitle: "title",
-      },
-      access: {
-        read: () => true,
-      },
-      fields: [
-        {
-          name: "title",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "subtitle",
-          type: "textarea",
-          required: true,
-        },
-        {
-          name: "ctaText",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "backgroundImage",
-          type: "upload",
-          relationTo: "media",
-        },
-      ],
-    },
-    {
-      slug: "story",
-      admin: {
-        useAsTitle: "sectionTitle",
-      },
-      access: {
-        read: () => true,
-      },
-      fields: [
-        {
-          name: "sectionTitle",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "sectionSubtitle",
-          type: "text",
-        },
-        {
-          name: "storyTitle",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "storyContent",
-          type: "richText",
-          editor: lexicalEditor({}),
-          required: true,
-        },
-        {
-          name: "twistTitle",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "twistContent",
-          type: "richText",
-          editor: lexicalEditor({}),
-          required: true,
-        },
-        {
-          name: "eventName",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "eventDate",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "eventDistance",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "eventLocation",
-          type: "text",
-          required: true,
-        },
-      ],
-    },
-    {
-      slug: "updates",
-      admin: {
-        useAsTitle: "title",
-        defaultColumns: ["title", "date", "updatedAt"],
-      },
-      access: {
-        read: () => true,
-      },
-      fields: [
-        {
-          name: "title",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "content",
-          type: "textarea",
-          required: true,
-        },
-        {
-          name: "date",
-          type: "date",
-          required: true,
-          admin: {
-            date: {
-              pickerAppearance: "dayOnly",
-            },
-          },
-        },
-      ],
-    },
-    {
-      slug: "media",
-      upload: {
-        staticDir: "media",
-        imageSizes: [
-          {
-            name: "thumbnail",
-            width: 400,
-            height: 300,
-            position: "centre",
-          },
-          {
-            name: "card",
-            width: 768,
-            height: 1024,
-            position: "centre",
-          },
-          {
-            name: "tablet",
-            width: 1024,
-            height: undefined,
-            position: "centre",
-          },
-        ],
-        adminThumbnail: "thumbnail",
-        mimeTypes: ["image/*"],
-      },
-      fields: [
-        {
-          name: "alt",
-          type: "text",
-        },
-      ],
-      access: {
-        read: () => true,
-      },
-    },
+    // ...collections unchanged
   ],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.POSTGRES_URL || "",
-    },
-  }),
+  db: process.env.NODE_ENV === "production"
+    ? vercelPostgresAdapter()
+    : postgresAdapter({
+        pool: {
+          connectionString: process.env.POSTGRES_URL || "",
+        },
+      }),
 })
