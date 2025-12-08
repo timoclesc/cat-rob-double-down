@@ -3,6 +3,13 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import path from "path"
 import { buildConfig } from "payload"
 import { fileURLToPath } from "url"
+import {
+  integer,
+  pgTable,
+  uniqueIndex,
+  timestamp,
+  text,
+} from '@payloadcms/db-vercel-postgres/drizzle/pg-core'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -198,5 +205,25 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
-  db: vercelPostgresAdapter({}),
+  db: vercelPostgresAdapter({
+    beforeSchemaInit: [
+    ({ schema }) => {
+      return {
+        ...schema,
+        tables: {
+          ...schema.tables,
+          pledges: pgTable('pledges', {
+            id: text('id').primaryKey(),
+            donor_name: text('donor_name').notNull(),
+            donor_email: text('donor_email'),
+            amount: integer('amount').notNull(),
+            charity_name: text('charity_name').notNull(),
+            bet_choice: text('bet_choice').notNull(),
+            created_at: timestamp('created_at').notNull(),
+          }),
+        },
+      }
+    },
+  ],
+  }),
 })

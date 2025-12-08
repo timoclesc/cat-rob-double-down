@@ -47,6 +47,7 @@ export async function createPledge(formData: FormData) {
   }
 
   const donorName = formData.get("donorName") as string
+  const donorEmail = formData.get("donorEmail") as string
   const amount = Number.parseInt(formData.get("pledgeAmount") as string, 10)
   const charityName = formData.get("charityName") as string
   const betChoice = formData.get("betChoice") as string
@@ -61,6 +62,7 @@ export async function createPledge(formData: FormData) {
 
   const { error } = await supabase.from("pledges").insert({
     donor_name: donorName,
+    donor_email: donorEmail,
     amount,
     charity_name: charityName,
     bet_choice: betChoice,
