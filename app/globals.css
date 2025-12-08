@@ -121,6 +121,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  p {
+    @apply mb-4;
+  }
 }
 
 html {
