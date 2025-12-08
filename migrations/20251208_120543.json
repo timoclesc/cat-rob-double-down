@@ -1,6 +1,4 @@
 {
-  "id": "7bb8b291-3cf8-4e11-b9a9-0934cabc2606",
-  "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -461,8 +459,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.updates": {
-      "name": "updates",
+    "public.training_updates": {
+      "name": "training_updates",
       "schema": "",
       "columns": {
         "id": {
@@ -505,8 +503,8 @@
         }
       },
       "indexes": {
-        "updates_updated_at_idx": {
-          "name": "updates_updated_at_idx",
+        "training_updates_updated_at_idx": {
+          "name": "training_updates_updated_at_idx",
           "columns": [
             {
               "expression": "updated_at",
@@ -520,8 +518,8 @@
           "method": "btree",
           "with": {}
         },
-        "updates_created_at_idx": {
-          "name": "updates_created_at_idx",
+        "training_updates_created_at_idx": {
+          "name": "training_updates_created_at_idx",
           "columns": [
             {
               "expression": "created_at",
@@ -835,6 +833,53 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public.payload_kv": {
+      "name": "payload_kv",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "key": {
+          "name": "key",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data": {
+          "name": "data",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "payload_kv_key_idx": {
+          "name": "payload_kv_key_idx",
+          "columns": [
+            {
+              "expression": "key",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.payload_locked_documents": {
       "name": "payload_locked_documents",
       "schema": "",
@@ -966,8 +1011,8 @@
           "primaryKey": false,
           "notNull": false
         },
-        "updates_id": {
-          "name": "updates_id",
+        "training_updates_id": {
+          "name": "training_updates_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
@@ -1070,11 +1115,11 @@
           "method": "btree",
           "with": {}
         },
-        "payload_locked_documents_rels_updates_id_idx": {
-          "name": "payload_locked_documents_rels_updates_id_idx",
+        "payload_locked_documents_rels_training_updates_id_idx": {
+          "name": "payload_locked_documents_rels_training_updates_id_idx",
           "columns": [
             {
-              "expression": "updates_id",
+              "expression": "training_updates_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -1157,9 +1202,9 @@
         "payload_locked_documents_rels_updates_fk": {
           "name": "payload_locked_documents_rels_updates_fk",
           "tableFrom": "payload_locked_documents_rels",
-          "tableTo": "updates",
+          "tableTo": "training_updates",
           "columnsFrom": [
-            "updates_id"
+            "training_updates_id"
           ],
           "columnsTo": [
             "id"
@@ -1496,5 +1541,7 @@
     "schemas": {},
     "tables": {},
     "columns": {}
-  }
+  },
+  "id": "7536bfaa-eda9-4bbb-961c-f262d98b3c5c",
+  "prevId": "00000000-0000-0000-0000-000000000000"
 }

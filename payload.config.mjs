@@ -124,6 +124,7 @@ export default buildConfig({
     },
     {
       slug: "updates",
+      dbName: "training_updates",
       admin: {
         useAsTitle: "title",
         defaultColumns: ["title", "date", "updatedAt"],
