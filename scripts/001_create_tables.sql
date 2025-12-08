@@ -2,6 +2,7 @@
 CREATE TABLE IF NOT EXISTS public.pledges (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   donor_name TEXT NOT NULL,
+  donor_email TEXT NOT NULL,
   amount INTEGER NOT NULL CHECK (amount > 0),
   charity_name TEXT NOT NULL,
   bet_choice TEXT NOT NULL CHECK (bet_choice IN ('FOR', 'AGAINST')),

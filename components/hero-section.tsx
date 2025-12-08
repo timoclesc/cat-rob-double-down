@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from 'next/image'
 
 interface HeroSectionProps {
   title?: string
@@ -10,11 +11,13 @@ export function HeroSection({ title, subtitle, ctaText }: HeroSectionProps) {
   return (
     <header className="relative">
       <div className="absolute inset-0">
-        <img
-          src="/placeholder.svg?height=900&width=1600"
-          alt="Two athletes running on a trail"
-          className="w-full h-full object-cover"
-        />
+        <Image
+          src="/rob-cat-retouch.jpg"
+          width={1440}
+          height={724}
+          alt="Rob and Cat standing on top of a mountain"
+          className="w-full h-full object-cover object-[50%_38%]"
+          />
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48 text-center">
@@ -27,7 +30,7 @@ export function HeroSection({ title, subtitle, ctaText }: HeroSectionProps) {
         </p>
         <Link
           href="#pledge"
-          className="mt-8 inline-block bg-rose-600 text-white hover:bg-rose-700 px-10 py-4 rounded-full text-lg font-bold shadow-lg transition-transform transform hover:scale-105 uppercase"
+          className="mt-8 inline-block bg-rose-600 text-white hover:bg-rose-700 px-10 py-4 rounded-full text-lg font-bold shadow-lg transition-all transform active:scale-95 uppercase"
         >
           {ctaText || "Make Your Pledge"}
         </Link>

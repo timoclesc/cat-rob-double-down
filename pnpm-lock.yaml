@@ -19,7 +19,7 @@ importers:
         version: 3.10.0(react-hook-form@7.64.0(react@19.2.0))
       '@payloadcms/db-vercel-postgres':
         specifier: ^3.59.1
-        version: 3.59.1(@types/pg@8.11.6)(payload@3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5))(postgres@@payloadcms+drizzle+postgres)
+        version: 3.59.1(@types/pg@8.11.6)(payload@3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5))
       '@payloadcms/next':
         specifier: latest
         version: 3.59.1(@types/react@19.2.2)(graphql@16.11.0)(monaco-editor@0.54.0)(next@15.2.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
@@ -5824,13 +5824,13 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@payloadcms/db-vercel-postgres@3.59.1(@types/pg@8.11.6)(payload@3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5))(postgres@@payloadcms+drizzle+postgres)':
+  '@payloadcms/db-vercel-postgres@3.59.1(@types/pg@8.11.6)(payload@3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5))':
     dependencies:
-      '@payloadcms/drizzle': 3.59.1(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5))(pg@8.16.3)(postgres@@payloadcms+drizzle+postgres)
+      '@payloadcms/drizzle': 3.59.1(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5))(pg@8.16.3)
       '@vercel/postgres': 0.9.0
       console-table-printer: 2.12.1
       drizzle-kit: 0.31.4
-      drizzle-orm: 0.44.2(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.16.3)(postgres@@payloadcms+drizzle+postgres)
+      drizzle-orm: 0.44.2(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.16.3)
       payload: 3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5)
       pg: 8.16.3
       prompts: 2.4.2
@@ -5867,11 +5867,11 @@ snapshots:
       - sqlite3
       - supports-color
 
-  '@payloadcms/drizzle@3.59.1(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5))(pg@8.16.3)(postgres@@payloadcms+drizzle+postgres)':
+  '@payloadcms/drizzle@3.59.1(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5))(pg@8.16.3)':
     dependencies:
       console-table-printer: 2.12.1
       dequal: 2.0.3
-      drizzle-orm: 0.44.2(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.16.3)(postgres@@payloadcms+drizzle+postgres)
+      drizzle-orm: 0.44.2(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.16.3)
       payload: 3.59.1(bufferutil@4.0.9)(graphql@16.11.0)(typescript@5.9.3)(utf-8-validate@6.0.5)
       prompts: 2.4.2
       to-snake-case: 1.0.0
@@ -7571,12 +7571,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.44.2(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.16.3)(postgres@@payloadcms+drizzle+postgres):
+  drizzle-orm@0.44.2(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.16.3):
     optionalDependencies:
       '@types/pg': 8.11.6
       '@vercel/postgres': 0.9.0
       pg: 8.16.3
-      postgres: link:@payloadcms/drizzle/postgres
 
   dunder-proto@1.0.1:
     dependencies:

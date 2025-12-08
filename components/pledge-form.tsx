@@ -57,6 +57,13 @@ export function PledgeForm() {
           <Input type="text" id="donorName" name="donorName" required className="mt-1" disabled={isPending} />
         </div>
         <div>
+          <Label htmlFor="donorEmail" className="text-stone-700">
+            Email
+          </Label>
+          <p className="mt-3 text-sm text-stone-500">We'll keep you up to date with our progress, and most importantly, the final result.</p>
+          <Input type="email" id="donorEmail" name="donorEmail" className="mt-1" disabled={isPending} />
+        </div>
+        <div>
           <Label htmlFor="pledgeAmount" className="text-stone-700">
             Pledge Amount ($)
           </Label>
