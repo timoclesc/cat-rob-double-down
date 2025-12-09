@@ -7,6 +7,7 @@ import {
   integer,
   pgTable,
   uniqueIndex,
+  uuid,
   timestamp,
   text,
 } from '@payloadcms/db-vercel-postgres/drizzle/pg-core'
@@ -213,13 +214,13 @@ export default buildConfig({
         tables: {
           ...schema.tables,
           pledges: pgTable('pledges', {
-            id: text('id').primaryKey(),
+            id: uuid('id').primaryKey().defaultRandom(),
             donor_name: text('donor_name').notNull(),
             donor_email: text('donor_email'),
             amount: integer('amount').notNull(),
             charity_name: text('charity_name').notNull(),
             bet_choice: text('bet_choice').notNull(),
-            created_at: timestamp('created_at').notNull(),
+            created_at: timestamp('created_at').notNull().defaultNow(),
           }),
         },
       }
