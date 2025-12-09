@@ -46,8 +46,8 @@ export function PledgeForm() {
   return (
     <section id="pledge" className="lg:col-span-3">
       <div className="text-center lg:text-left mb-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-stone-800">Make Your Pledge</h2>
-        <p className="mt-3 text-lg text-stone-600">Every donation makes a difference. Pick a side.</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-stone-800">Share Your Donation</h2>
+        <p className="mt-3 text-lg text-stone-600">Make a donation to your chosen charity, then log it here so we can keep track of how much we’ve raised.</p>
       </div>
       <form onSubmit={handleSubmit} className="bg-stone-50 p-8 rounded-lg shadow-xl border border-stone-200 space-y-6">
         <div>
@@ -65,7 +65,7 @@ export function PledgeForm() {
         </div>
         <div>
           <Label htmlFor="pledgeAmount" className="text-stone-700">
-            Pledge Amount ($)
+            Donation Amount ($)
           </Label>
           <Input
             type="number"
@@ -141,18 +141,17 @@ export function PledgeForm() {
             className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg text-lg"
             disabled={isPending || !turnstileToken}
           >
-            {isPending ? "Registering..." : "Register My Pledge"}
+            {isPending ? "Registering..." : "Register My Donation"}
           </Button>
         </div>
         <p className="text-xs text-stone-500 text-center pt-2">
-          Note: This form registers your pledge. You will be reminded to make the actual donation to your chosen charity
-          after the event concludes.
+          Note: This form simply registers your donation. Please donate to your nominated charity before submitting.
         </p>
       </form>
       {showSuccess && (
         <div className="mt-6 bg-emerald-100 border-l-4 border-emerald-500 text-emerald-700 p-4 rounded-md" role="alert">
           <p className="font-bold">Thank you!</p>
-          <p>Your pledge has been successfully registered.</p>
+          <p>Your donation has been successfully registered.</p>
         </div>
       )}
       {error && (
