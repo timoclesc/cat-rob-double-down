@@ -26,9 +26,7 @@ function calculateStats(pledges: Pledge[]): DashboardStats {
 
   const totalAgainst = pledges.filter((p) => p.bet_choice === "AGAINST").reduce((sum, p) => sum + p.amount, 0)
 
-  const maxPayout = pledges
-    .filter((p) => p.bet_choice === "AGAINST")
-    .reduce((sum, p) => sum + Math.min(p.amount, 10000), 0)
+  const maxPayout = totalFor + totalAgainst + Math.min(totalAgainst, 100000);
 
   return { totalFor, totalAgainst, maxPayout }
 }

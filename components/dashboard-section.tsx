@@ -48,6 +48,11 @@ export function DashboardSection({ stats }: DashboardSectionProps) {
     },
   }
 
+  const tickSize = 1000;
+  const xAxisMax = Math.round(stats.maxPayout / tickSize) * tickSize;
+  const tickCount = xAxisMax / tickSize + 1;
+  const ticks = Array.from({ length: tickCount }, (_, i) => i * tickSize);
+
   return (
     <section id="dashboard" className="py-16 md:py-24 bg-stone-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,20 +70,26 @@ export function DashboardSection({ stats }: DashboardSectionProps) {
             <p className="text-4xl font-extrabold text-rose-600 mt-2">{formatCurrency(stats.totalAgainst)}</p>
           </div>
           <div className="bg-rose-800 text-white p-6 rounded-lg shadow-lg">
-            <h3 className="text-lg font-semibold text-rose-100">Our Max Potential Payout</h3>
+            <h3 className="text-lg font-semibold text-rose-100">Total Donations</h3>
             <p className="text-4xl font-extrabold mt-2">{formatCurrency(stats.maxPayout)}</p>
           </div>
         </div>
         <div className="mt-12 bg-white p-6 rounded-lg shadow-lg">
           <ChartContainer config={chartConfig} className="h-[200px] w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                <XAxis type="number" tick={<CustomizedAxisTick />} />
+                <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                <XAxis
+                  type="number"
+                  tick={<CustomizedAxisTick />}
+                  domain={[0, xAxisMax]}
+                  tickCount={tickCount}
+                  ticks={ticks}
+                />
                 <YAxis type="category" dataKey="category" hide />
                 <ChartTooltip content={<ChartTooltipContent />} />
                 <Bar dataKey="for" stackId="a" fill="var(--color-for)" radius={[0, 0, 0, 0]} />
                 <Bar dataKey="against" stackId="a" fill="var(--color-against)" radius={[0, 4, 4, 0]} />
-              </BarChart>
+                </BarChart>
             </ResponsiveContainer>
           </ChartContainer>
         </div>
